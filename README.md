@@ -1,6 +1,6 @@
 
 # Demo
-* click on the screenshot to open the demo video
+click on the screenshot to open the demo video
 
 <div align="center">
   <a href="https://www.youtube.com/watch?v=7m0yG9PXvLA">
