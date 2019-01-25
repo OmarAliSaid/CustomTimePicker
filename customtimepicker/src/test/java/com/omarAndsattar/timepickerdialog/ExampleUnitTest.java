@@ -1,4 +1,4 @@
-package com.omarali.customtimepicker;
+package com.omarAndsattar.timepickerdialog;
 
 import org.junit.Test;
 

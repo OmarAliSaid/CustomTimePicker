@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">CustomTimePicker</string>
+    <string name="app_name">My Library</string>
+    <string name="tag_is_center">tagIsCenter</string>
     <string name="label_done">Done</string>
     <string name="label_day">Day</string>
     <string name="label_hour">Hour</string>

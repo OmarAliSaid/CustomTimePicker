@@ -1,12 +1,12 @@
-package com.omarali.customtimepicker;
+package com.omarAndsattar.customtimepicker;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.omarAndsattar.customtimepicker.SelectedTimeEvent;
-import com.omarAndsattar.customtimepicker.TimePickerDialog;
-import com.omarAndsattar.customtimepicker.TimeSelectedListener;
+import com.omarAndsattar.timepickerdialog.SelectedTimeEvent;
+import com.omarAndsattar.timepickerdialog.TimePickerDialog;
+import com.omarAndsattar.timepickerdialog.TimeSelectedListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

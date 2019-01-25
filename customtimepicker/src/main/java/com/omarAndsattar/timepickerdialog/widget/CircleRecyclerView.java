@@ -1,4 +1,4 @@
-package me.khrystal.library.widget;
+package com.omarAndsattar.timepickerdialog.widget;
 
 import android.content.Context;
 import android.os.Handler;
@@ -8,14 +8,10 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
-
+import com.omarAndsattar.timepickerdialog.R;
 import java.lang.ref.WeakReference;
-
-import me.khrystal.library.R;
 
 
 /**
@@ -69,12 +65,12 @@ public class CircleRecyclerView extends RecyclerView implements View.OnClickList
         super.onLayout(changed, l, t, r, b);
 
         if (mNeedLoop) {
-//            scrollToPosition Notwork use delay
+            // scrollToPosition Notwork use delay
             if (!mFirstOnLayout) {
                 mFirstOnLayout = true;
                 mPostHandler.sendEmptyMessage(0);
             }
-//            scrollToPosition(DEFAULT_SELECTION);
+            // scrollToPosition(DEFAULT_SELECTION);
             mCurrentCenterChildView = findViewAtCenter();
             smoothScrollToView(mCurrentCenterChildView);
         } else if (!mNeedLoop && mNeedCenterForce) {

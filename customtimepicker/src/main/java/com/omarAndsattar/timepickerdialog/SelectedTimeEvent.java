@@ -1,7 +1,7 @@
-package com.omarAndsattar.customtimepicker;
+package com.omarAndsattar.timepickerdialog;
 
 public class SelectedTimeEvent {
-    String day, hour, minutes, Am_Pm;
+    String day , hour, minutes , Am_Pm;
 
     public SelectedTimeEvent() {
     }
@@ -38,7 +38,7 @@ public class SelectedTimeEvent {
         Am_Pm = am_Pm;
     }
 
-    public String toString() {
-        return day + "  " + hour + ":" + minutes + " " + Am_Pm;
+    public String toString(){
+        return day + "  "+hour+":"+minutes+" "+Am_Pm;
     }
 }

@@ -1,4 +1,4 @@
-package com.omarali.customtimepicker;
+package com.omarAndsattar.customtimepicker;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
