@@ -1,10 +1,9 @@
 
 # Demo
-
-<p align="center">
-[![Android Custom Time Picker](http://i.imgur.com/7YTMFQp.png)](https://vimeo.com/user94331559/review/313447671/3b0a0d70ce "Android Custom Time Picker Demo - Click to Watch!")
-</p>
-
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=7m0yG9PXvLA">
+  <img src="https://img.youtube.com/vi/7m0yG9PXvLA/0.jpg" alt="IMAGE ALT TEXT"></a>
+</div>
 
 # Android Custom Time Picker
 this is a demo app for custom time picker in android , you can customize it to show any data relevant to your application 
