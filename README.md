@@ -1,8 +1,10 @@
 
 # Demo
+click on the screenshot to open the demo video
+
 <div align="center">
   <a href="https://www.youtube.com/watch?v=7m0yG9PXvLA">
-  <img src="https://img.youtube.com/vi/7m0yG9PXvLA/0.jpg" alt="IMAGE ALT TEXT"></a>
+  <img src="https://github.com/OmarAliSaid/CustomTimePicker/blob/master/ScreenShots/Screenshot_1.jpeg" width="200"></a>
 </div>
 
 # Android Custom Time Picker
