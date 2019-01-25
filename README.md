@@ -1,5 +1,7 @@
 
 # Demo
+* click on the screenshot to open the demo video
+
 <div align="center">
   <a href="https://www.youtube.com/watch?v=7m0yG9PXvLA">
   <img src="https://github.com/OmarAliSaid/CustomTimePicker/blob/master/ScreenShots/Screenshot_1.jpeg" width="200"></a>
