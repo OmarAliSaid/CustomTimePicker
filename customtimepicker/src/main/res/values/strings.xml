@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CustomTimePicker</string>
+    <string name="label_done">Done</string>
+    <string name="label_day">Day</string>
+    <string name="label_hour">Hour</string>
+    <string name="label_minutes">Minutes</string>
+</resources>

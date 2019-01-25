@@ -1,1 +1,1 @@
-include ':app', ':CircularRecycler'
+include ':app', ':CircularRecycler', ':customtimepicker'

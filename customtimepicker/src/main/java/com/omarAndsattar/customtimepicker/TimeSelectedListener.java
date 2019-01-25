@@ -1,4 +1,4 @@
-package com.omarali.customtimepicker;
+package com.omarAndsattar.customtimepicker;
 
 public interface TimeSelectedListener {
     void onTimeSelected(SelectedTimeEvent event);
