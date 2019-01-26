@@ -3,6 +3,7 @@ package com.omarAndsattar.timepickerdialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.format.DateFormat;
@@ -42,10 +43,67 @@ public class TimePickerDialog extends DialogFragment implements DatesListAdapter
 
     SelectedTimeEvent selectedTimeEvent = new SelectedTimeEvent();
 
+    String startDate="1/1/2018" , endDate="1/1/2019" , btnDoneText;
+    String btnDoneBackground = "f9f8fc" , btnDoneTextColor ="#FFFFFF";
+    int minutesIncrementalValue = 5;
+
+    private static String ARG_START_DATE = "start_date";
+    private static String ARG_END_DATE = "end_date";
+    private static String ARG_BUTTON_COLOR = "btn_background";
+    private static String ARG_BUTTON_TEXT_COLOR = "btn_text_color";
+    private static String ARG_INCREMENT_MINUTES_BY = "increment_minutes_value";
+    private static String ARG_BUTTON_TEXT = "btn_text";
+
     public TimePickerDialog()  {
         // Required empty public constructor
     }
 
+
+    public static class Builder{
+        Bundle arguments;
+
+        public Builder(){
+            arguments = new Bundle();
+        }
+
+        public Builder setStartDate(String startDate){
+            arguments.putString(ARG_START_DATE , startDate);
+            return this;
+        }
+
+        public Builder setEndDate(String endDate){
+            arguments.putString(ARG_END_DATE , endDate);
+            return this;
+        }
+
+        public Builder setPositiveButtonBackgroundColor(String color){
+            arguments.putString(ARG_BUTTON_COLOR , color);
+            return this;
+        }
+
+        public Builder setPositiveButtonText(String donBtnText){
+            arguments.putString(ARG_BUTTON_TEXT , donBtnText);
+            return this;
+        }
+
+        public Builder setPositiveButtonTextColor(String positiveButtonTextColor){
+            arguments.putString(ARG_BUTTON_TEXT_COLOR , positiveButtonTextColor);
+            return this;
+        }
+
+        public Builder incrementMinutesBy(int value){
+            arguments.putInt(ARG_INCREMENT_MINUTES_BY , value);
+            return this;
+        }
+
+        public TimePickerDialog create(){
+            TimePickerDialog timePickerDialog = new TimePickerDialog();
+            timePickerDialog.setArguments(arguments);
+
+            return timePickerDialog;
+        }
+
+    }
 
     @Override
     public void onDismiss(DialogInterface dialog) {
@@ -107,12 +165,9 @@ public class TimePickerDialog extends DialogFragment implements DatesListAdapter
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.dialog_pick_time, container, false);
 
-        dateRecycler = view.findViewById(R.id.rv_date_recycler);
-        hoursRecycler = view.findViewById(R.id.rv_hours_recycler);
-        minutesRecycler = view.findViewById(R.id.rv_minutes_recycler);
-        am_pm_Recycler = view.findViewById(R.id.rv_am_pm_recycler);
-        Button btnDone = view.findViewById(R.id.btn_done);
+        prepareInitialValues();
 
+        initializeViews(view);
 
         setupDatesRecycler();
 
@@ -123,15 +178,70 @@ public class TimePickerDialog extends DialogFragment implements DatesListAdapter
         setupAmPmRecycler();
 
 
-        btnDone.setOnClickListener(v->dismiss());
-
-
         return view;
     }
 
 
+
+    /**
+     *
+     * get the values that was initialized by the builder if it's found
+     *
+     */
+    private void prepareInitialValues(){
+        // Done button default text
+        btnDoneText = getString(R.string.label_done);
+
+        Bundle bundle = getArguments();
+
+        if(bundle!=null){
+            if(bundle.getString(ARG_START_DATE)!=null)
+                startDate = bundle.getString(ARG_START_DATE);
+
+            if(bundle.getString(ARG_END_DATE)!=null)
+                endDate = bundle.getString(ARG_END_DATE);
+
+            if(bundle.getString(ARG_BUTTON_TEXT)!=null)
+                btnDoneText = bundle.getString(ARG_BUTTON_TEXT);
+
+            if(bundle.getString(ARG_BUTTON_COLOR)!=null)
+                btnDoneBackground = bundle.getString(ARG_BUTTON_COLOR);
+
+            if(bundle.getString(ARG_BUTTON_TEXT_COLOR)!=null)
+                btnDoneTextColor = bundle.getString(ARG_BUTTON_TEXT_COLOR);
+
+            minutesIncrementalValue = bundle.getInt(ARG_INCREMENT_MINUTES_BY,5);
+        }
+    }
+
+
+
+    /**
+     * initialize views
+     *
+     *
+     * @param view
+     */
+    private void initializeViews(View view){
+        dateRecycler = view.findViewById(R.id.rv_date_recycler);
+        hoursRecycler = view.findViewById(R.id.rv_hours_recycler);
+        minutesRecycler = view.findViewById(R.id.rv_minutes_recycler);
+        am_pm_Recycler = view.findViewById(R.id.rv_am_pm_recycler);
+        Button btnDone = view.findViewById(R.id.btn_done);
+
+        btnDone.setText(btnDoneText);
+        btnDone.setTextColor(android.graphics.Color.parseColor(btnDoneTextColor));
+        btnDone.setBackgroundColor(android.graphics.Color.parseColor(btnDoneBackground));
+
+
+        btnDone.setOnClickListener(v->dismiss());
+    }
+
+
+
     /**
      * configure full width dialog with animations
+     *
      */
     private void setupDialog(){
         getDialog().getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
@@ -266,15 +376,15 @@ public class TimePickerDialog extends DialogFragment implements DatesListAdapter
      *
      */
     private void getDatesList(){
-        Date startDate = new Date("1/1/2019");
-        Date endDate = new Date("30/12/2019");
+        Date startDate = new Date(this.startDate);
+        Date endDate = new Date(this.endDate);
 
         Calendar start = Calendar.getInstance();
         start.setTime(startDate);
         Calendar end = Calendar.getInstance();
         end.setTime(endDate);
 
-        for (Date date = start.getTime(); start.before(end); start.add(Calendar.DATE, 1), date = start.getTime()) {
+        for (Date date = start.getTime();  start.before(end);  start.add(Calendar.DATE, 1), date = start.getTime()) {
             // Do your job here with `date`.
             System.out.println(date);
 
@@ -308,7 +418,7 @@ public class TimePickerDialog extends DialogFragment implements DatesListAdapter
      */
     private void getMinutesList(){
         DecimalFormat df = new DecimalFormat("00");
-        for(int i=0;i<=55;i+=5)
+        for(int i=0;i<=55;i+=minutesIncrementalValue)
             minutes.add(df.format(i));
     }
 

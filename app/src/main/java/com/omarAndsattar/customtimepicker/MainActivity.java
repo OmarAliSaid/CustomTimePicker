@@ -3,11 +3,9 @@ package com.omarAndsattar.customtimepicker;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
-
 import com.omarAndsattar.timepickerdialog.SelectedTimeEvent;
 import com.omarAndsattar.timepickerdialog.TimePickerDialog;
 import com.omarAndsattar.timepickerdialog.TimeSelectedListener;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -23,12 +21,24 @@ public class MainActivity extends AppCompatActivity implements TimeSelectedListe
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+
     }
 
 
     @OnClick(R.id.btn_pick_time)
     public void pickTime() {
-        new TimePickerDialog().show(getSupportFragmentManager(), "DIALOG_TIME_PICKER");
+        TimePickerDialog.Builder timePickerBuilder = new TimePickerDialog.Builder();
+
+        TimePickerDialog timePickerDialog = timePickerBuilder
+                .setStartDate("2019/01/20")
+                .setEndDate("2019/02/04")
+                .setPositiveButtonBackgroundColor("#D81B60")
+                .setPositiveButtonTextColor("#000000")
+                .setPositiveButtonText("DONE")
+                .incrementMinutesBy(3)
+                .create();
+
+        timePickerDialog.show(getSupportFragmentManager(), "DIALOG_TIME_PICKER");
     }
 
 
