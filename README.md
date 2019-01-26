@@ -19,7 +19,7 @@ this is a demo app for custom time picker in android , you can customize it to s
 logic not only as a time picker.
 
 # Usage
-```
+``` Java
 public class MainActivity extends AppCompatActivity implements TimeSelectedListener {
 
     @BindView(R.id.tv_selected_time)TextView tv_selected_time;
