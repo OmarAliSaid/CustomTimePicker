@@ -1,9 +1,43 @@
-apply plugin: 'com.android.library'
 
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+ext {
+    bintrayRepo = 'CustomTimePicker'
+    bintrayName = 'customTimePicker'
+
+    publishedGroupId = 'com.omarali'
+    libraryName = 'customTimePicker'
+    artifact = 'customTimePicker'
+
+    libraryDescription = 'IOS Time Picker for Android.'
+
+    siteUrl = 'https://github.com/OmarAliSaid/CustomTimePicker'
+    gitUrl = 'https://github.com/OmarAliSaid/CustomTimePicker.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'OmarAliSaid'
+    developerName = 'Omar Ali Said'
+    developerEmail = 'omar.ali@stud.fci-cu.edu.eg'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 android {
     compileSdkVersion 28
-
-
 
     defaultConfig {
         minSdkVersion 15
@@ -27,6 +61,8 @@ android {
         sourceCompatibility 1.8
     }
 
+
+
 }
 
 dependencies {
@@ -37,4 +73,17 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+//This script is not supposed to be changed a lot, so it is safe to move it to a separate file and substitute it with this one line at the bottom of the build.gradle of your library module:
+
+//apply from: 'LINK_TO_SCRIPT'
+//https://gist.githubusercontent.com/Abdelsattar/c4c6b2e8d52d87adf915af0a0020f06a/raw/a030e8dcef2e9a8a7194bbd3b18dfa0e1ba9e026/bintray_script
+apply from: 'https://goo.gl/XJVsMg'
+
+//to skip gerenrate javadoc
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+    options.addStringOption('charSet', 'UTF-8')
 }
